@@ -101,14 +101,15 @@ Modern gradient background with glassmorphism card for authentication.
 ### Add Expense Screen
 Large amount input with AI categorization button. Shows predicted category after adding.
 ![Add Expense Screen](Screenshot_2026-02-21_131419.png)
+![Add Expense Screen](Screenshot_2026-02-21_131434.png)
 
 ### Monthly Summary Screen
 Beautiful gradient total card with category breakdown and progress bars.
-![Monthly Summary Screen](Screenshot_2026-02-21_131434.png)
+![Monthly Summary Screen](Screenshot_2026-02-21_131529.png)
 
 ### Expense List Screen
 Swipeable expense cards with tap-to-edit category functionality.
-![Expense List Screen](Screenshot_2026-02-21_131529.png)
+![Expense List Screen](Screenshot_2026-02-21_131543.png)
 
 ### Edit Category Dialog
 Tap on any expense to change its category if AI predicted incorrectly.
