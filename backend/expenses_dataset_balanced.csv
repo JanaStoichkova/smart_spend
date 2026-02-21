@@ -1,0 +1,96 @@
+description,category
+coffee at starbucks,Food
+pizza,Food
+dinner out,Food
+chicken,Food
+subway sandwich,Food
+smoothie bowl,Food
+ice cream,Food
+breakfast at cafe,Food
+taco bell,Food
+steak,Food
+dunkin donuts,Food
+restaurant dinner,Food
+movie tickets,Entertainment
+netflix subscription,Entertainment
+concert tickets,Entertainment
+spotify premium,Entertainment
+video game,Entertainment
+movie streaming,Entertainment
+music festival,Entertainment
+theater tickets,Entertainment
+concert,Entertainment
+museum visit,Entertainment
+bowling,Entertainment
+parking garage,Transportation
+gas for car,Transportation
+bike rental,Transportation
+bus ticket,Transportation
+subway pass,Transportation
+flight ticket,Transportation
+car wash,Transportation
+gas station,Transportation
+lyft ride,Transportation
+car rental,Transportation
+toll bridge,Transportation
+car wash,Transportation
+rent,Housing
+monthly rent,Housing
+mortgage payment,Housing
+property tax,Housing
+home insurance,Housing
+apartment lease,Housing
+security deposit,Housing
+moving expenses,Housing
+home repair,Housing
+furniture purchase,Housing
+home maintenance,Housing
+electricity bill,Utilities
+internet bill,Utilities
+phone bill,Utilities
+electricity bill,Utilities
+water bill,Utilities
+gas bill,Utilities
+internet service,Utilities
+phone bill,Utilities
+trash service,Utilities
+cable tv,Utilities
+streaming services,Utilities
+cloud storage,Utilities
+gym membership,Health
+doctor visit,Health
+medicine,Health
+health insurance,Health
+dental cleaning,Health
+vitamins,Health
+eye exam,Health
+gym equipment,Health
+yoga class,Health
+haircut,Personal Care
+toiletries,Personal Care
+skincare products,Personal Care
+makeup,Personal Care
+shampoo,Personal Care
+soap,Personal Care
+deodorant,Personal Care
+perfume,Personal Care
+clothing shopping,Shopping
+amazon order,Shopping
+electronics purchase,Shopping
+home supplies,Shopping
+online shopping,Shopping
+mall shopping,Shopping
+target shopping,Shopping
+walmart shopping,Shopping
+book purchase,Education
+online course,Education
+workshop,Education
+certification exam,Education
+training program,Education
+online course,Education
+university tuition,Education
+textbooks,Education
+textbook,Education
+language learning,Education
+tuition fee,Education
+seminar,Education

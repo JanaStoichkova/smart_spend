@@ -18,7 +18,12 @@ class UserOut(BaseModel):
 class ExpenseCreate(BaseModel):
     amount: float
     description: str
-    category: str
+    category: str | None = None  # Optional - will be predicted by ML if not provided
+
+class ExpenseUpdate(BaseModel):
+    amount: float | None = None
+    description: str | None = None
+    category: str | None = None
 
 class ExpenseResponse(BaseModel):
     id: int
@@ -30,3 +35,9 @@ class ExpenseResponse(BaseModel):
     model_config = {
         "from_attributes": True   # <-- Pydantic v2 replacement for orm_mode
     }
+
+class MonthlySummary(BaseModel):
+    month: str
+    year: int
+    total_expenses: float
+    categories: dict[str, float]  # category -> amount

@@ -4,7 +4,7 @@ from app.database import SessionLocal
 from app.models import User
 from app.schemas import UserCreate, UserLogin
 from app.utils.security import hash_password, verify_password
-from app.utils.jwt import create_access_token
+from app.utils.security import create_access_token
 
 router = APIRouter()
 
