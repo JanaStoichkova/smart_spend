@@ -97,15 +97,19 @@ flutter run -d chrome
 
 ### Login Screen
 Modern gradient background with glassmorphism card for authentication.
+![Login Screen](screenshots/login.png)
 
-### Add Expense Screen  
+### Add Expense Screen
 Large amount input with AI categorization button. Shows predicted category after adding.
+![Add Expense Screen](screenshots/add_expense.png)
 
 ### Monthly Summary Screen
 Beautiful gradient total card with category breakdown and progress bars.
+![Monthly Summary Screen](screenshots/monthly_summary.png)
 
 ### Expense List Screen
 Swipeable expense cards with tap-to-edit category functionality.
+![Expense List Screen](screenshots/edit_category.png)
 
 ---
 
