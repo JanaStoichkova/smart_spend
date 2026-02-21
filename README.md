@@ -113,7 +113,7 @@ Swipeable expense cards with tap-to-edit category functionality.
 
 ### Edit Category Dialog
 Tap on any expense to change its category if AI predicted incorrectly.
-![Edit Category](Screenshot_2026-02-21_131543.png)
+![Edit Category](Screenshot_2026-02-21_140230.png)
 
 ---
 
