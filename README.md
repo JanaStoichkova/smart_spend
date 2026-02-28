@@ -24,72 +24,23 @@ SmartSpend is a full-stack expense tracking application with AI-powered automati
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        FRONTEND                              │
-│                    (Flutter Web/Mobile)                      │
-│                                                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                  │
-│  │   Add    │  │ Summary  │  │ Expenses │                  │
-│  │ Expense  │  │   Tab    │  │   List   │                  │
-│  ────┬─────┘  ────┬─────┘  ────┬─────┘                  │
-│       │             │             │                          │
-│       ─────────────┴─────────────┘                          │
-│                     │                                        │
-│              HTTP API Calls                                   │
-─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                        BACKEND                               │
-│                     (FastAPI + Python)                       │
-│                                                              │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │                    API Endpoints                      │  │
-│  │  /auth/login  /expenses/  /ml/predict  /summary      │  │
-│  ──────────────────────┬───────────────────────────────┘  │
-│                         │                                   │
-│  ┌─────────────┐  ┌─────┴──────┐  ┌───────────────┐       │
-│  │  Database   │  │   ML      │  │  Auth/JWT     │       │
-│  │  SQLite    │  │  Model    │  │  Security    │       │
-│  ─────────────┘  ───────────┘  ───────────────┘       │
-─────────────────────────────────────────────────────────────┘
-```
+The application consists of two main parts:
+
+- **Frontend**: A Flutter application that runs on web, iOS, Android, and desktop. It has three main screens - Add Expense, Monthly Summary, and Expense List. The frontend communicates with the backend via HTTP REST API calls.
+
+- **Backend**: A Python FastAPI server that handles authentication, expense CRUD operations, and ML-based category prediction. It uses SQLite for data storage and scikit-learn for machine learning.
 
 ---
 
-## Quick Start
+## Project Structure
 
-### 1. Start the Backend
+The project is organized into two main folders:
 
-```bash
-# Navigate to backend
-cd backend
+- **backend/**: Contains the FastAPI server with all Python files. The `app/` folder has the main application code including routes for authentication, expenses, and ML prediction. ML utilities handle text preprocessing and category prediction. Pre-trained model files (`.pkl`) are stored in this folder.
 
-# Install dependencies
-pip install -r requirements.txt
+- **smartspend_frontend/**: Contains the Flutter application. The main code is in `lib/main.dart`. Build outputs go to `build/`.
 
-# Train ML model (optional, already trained)
-python -m app.utils.train_model
-
-# Start server
-python -m uvicorn app.main:app --reload
-```
-
-Backend runs at: `http://127.0.0.1:8000`
-
-### 2. Start the Frontend
-
-```bash
-# Navigate to frontend
-cd smartspend_frontend
-
-# Install dependencies
-flutter pub get
-
-# Run on web (recommended)
-flutter run -d chrome
-```
+Both folders have their own dependency files (`requirements.txt` for backend, `pubspec.yaml` for frontend).
 
 ---
 
@@ -117,45 +68,7 @@ Tap on any expense to change its category if AI predicted incorrectly.
 
 ---
 
-##  Project Structure
-
-```
-SmartSpend/
-│
-├── backend/                    # Python FastAPI Backend
-│   ├── app/
-│   │   ├── main.py           # FastAPI app entry
-│   │   ├── models.py         # SQLAlchemy database models
-│   │   ├── schemas.py        # Pydantic schemas
-│   │   ├── database.py       # Database configuration
-│   │   ├── routes/          # API endpoints
-│   │   │   ├── auth.py      # Login/Signup
-│   │   │   ├── expenses.py   # Expense CRUD
-│   │   │   ├── categories.py
-│   │   │   ── predict.py   # ML prediction
-│   │   ── utils/           # Utilities
-│   │       ├── nlp.py       # ML preprocessing
-│   │       ├── train_model.py
-│   │       ── security.py
-│   ├── expenses_dataset.csv  # ML training data
-│   ├── expense_model.pkl     # Trained model
-│   ├── requirements.txt
-│   ── smartspend.db        # SQLite database
-│
-├── smartspend_frontend/      # Flutter Frontend
-│   ├── lib/
-│   │   ── main.dart        # Main Flutter app
-│   ├── pubspec.yaml
-│   ├── build/               # Compiled web app
-│   ── README.md
-│
-├── .gitignore
-── README.md               # This file
-```
-
----
-
-##  API Endpoints
+## API Endpoints
 
 ### Authentication
 | Endpoint | Method | Description |
@@ -180,7 +93,7 @@ SmartSpend/
 
 ---
 
-##  Machine Learning
+## Machine Learning
 
 ### Model Training
 - **Algorithm**: SVM (Support Vector Machine) with Linear Kernel
@@ -205,7 +118,7 @@ python -m app.utils.train_model
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 ### Backend
 - **FastAPI** - Modern Python web framework
@@ -225,7 +138,7 @@ python -m app.utils.train_model
 
 ---
 
-##  Configuration
+## Configuration
 
 ### Change Backend Port
 In `backend/app/main.py`, modify the uvicorn command:
@@ -247,7 +160,7 @@ DATABASE_URL = "sqlite:///./your_path.db"
 
 ---
 
-##  Installation
+## Installation
 
 ### Backend Dependencies
 ```bash
@@ -263,7 +176,7 @@ flutter pub get
 
 ---
 
-##  Running the Application
+## Running the Application
 
 ### Development Mode
 
@@ -296,7 +209,7 @@ flutter build web
 
 ---
 
-##  Troubleshooting
+## Troubleshooting
 
 ### CORS Errors
 If frontend can't connect to backend, ensure CORS is enabled in `backend/app/main.py`:
@@ -326,7 +239,7 @@ python -m uvicorn app.main:app --reload
 
 ---
 
-##  Performance
+## Performance
 
 | Component | Metric |
 |-----------|--------|
@@ -337,7 +250,7 @@ python -m uvicorn app.main:app --reload
 
 ---
 
-##  Contributing
+## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing`)
@@ -347,10 +260,4 @@ python -m uvicorn app.main:app --reload
 
 ---
 
-##  License
-
-MIT License - See LICENSE file for details.
-
----
-
-**Built with  using FastAPI + Flutter**
+**Built with FastAPI + Flutter**
