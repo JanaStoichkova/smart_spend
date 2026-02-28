@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartSpend - Retrain Model</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        h1 { color: #6366F1; }
+        input { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { padding: 15px 30px; background: #6366F1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin: 10px 5px 10px 0; }
+        button:hover { background: #4F46E5; }
+        button:disabled { background: #ccc; }
+        #result { margin-top: 20px; padding: 15px; border-radius: 8px; }
+        .success { background: #D1FAE5; color: #065F46; }
+        .error { background: #FEE2E2; color: #991B1B; }
+        .info { background: #DBEAFE; color: #1E40AF; }
+    </style>
+</head>
+<body>
+    <h1>SmartSpend - Retrain AI Model</h1>
+    <p>Enter your login credentials to retrain the model with your corrections.</p>
+    
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    
+    <br>
+    <button onclick="loginAndRetrain()">Login & Retrain</button>
+    <button onclick="checkCorrections()">Check Corrections</button>
+    
+    <div id="result"></div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000';
+        let token = '';
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const response = await fetch(API_URL + '/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            
+            if (!response.ok) throw new Error('Login failed');
+            const data = await response.json();
+            return data.access_token;
+        }
+
+        async function checkCorrections() {
+            if (!token) {
+                try { token = await login(); } 
+                catch { showResult('Login failed', 'error'); return; }
+            }
+            
+            const response = await fetch(API_URL + '/ml/corrections-count', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            const data = await response.json();
+            showResult('Corrections available: ' + data.corrections_count, 'info');
+        }
+
+        async function loginAndRetrain() {
+            showResult('Logging in...', 'info');
+            
+            try {
+                token = await login();
+                showResult('Logged in! Retraining model...', 'info');
+                
+                const response = await fetch(API_URL + '/ml/retrain', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const data = await response.json();
+                
+                if (data.message && data.message.includes('No corrections')) {
+                    showResult('No corrections to retrain with. Make corrections in the app first!', 'error');
+                } else {
+                    const accuracy = (data.new_accuracy * 100).toFixed(1);
+                    showResult('Success! Model retrained. New accuracy: ' + accuracy + '%', 'success');
+                }
+            } catch (e) {
+                showResult('Error: ' + e.message, 'error');
+            }
+        }
+
+        function showResult(msg, type) {
+            document.getElementById('result').innerHTML = msg;
+            document.getElementById('result').className = type;
+        }
+    </script>
+</body>
+</html>
